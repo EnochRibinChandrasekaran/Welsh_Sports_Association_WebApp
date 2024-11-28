@@ -1,0 +1,69 @@
+.login-form-container {
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-form {
+  width: 300px;
+  padding: 20px;
+  border: none;
+  text-align: center;
+}
+
+.login-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #d9534f;
+  border-radius: 5px;
+}
+
+.login-form button {
+  background-color: #ff0700;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-form .register-link {
+  background-color: #00c5ff; /* Changed background color for better contrast */
+  color: #fff; /* White text for better readability */
+  text-decoration: none;
+  padding: 15px; /* Added padding for a button-like appearance */
+  margin-top: 20px;
+  border-radius: 25px; /* Consistent with the Login button */
+  display: inline-block;
+  width: 100%; /* Full width button */
+  text-align: center; /* Centered text */
+}
+
+/* Add hover effects */
+.login-form button:hover {
+  background-color: #c59e9e;
+  border-radius: 25px;
+}
+
+.login-form .register-link:hover {
+  background-color: #31b0d5; /* Slightly darker blue on hover */
+}

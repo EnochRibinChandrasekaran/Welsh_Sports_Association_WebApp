@@ -1,0 +1,64 @@
+/* src/Organiser/VolunteerApprovalsPage.css */
+
+.volunteer-approvals {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.volunteer-approvals h1 {
+    text-align: center;
+}
+
+.volunteer-approvals ul {
+    list-style: none;
+    padding: 0;
+}
+
+.volunteer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.volunteer-name {
+    font-weight: bold;
+}
+
+.volunteer-status {
+    font-style: italic;
+}
+
+.volunteer-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.accept-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.reject-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.accepted {
+    background-color: #e7f9e7;
+}
+
+.rejected {
+    background-color: #fde7e7;
+}

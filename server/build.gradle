@@ -1,0 +1,83 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'checkstyle'
+	id 'jacoco'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+checkstyle {
+	toolVersion = '10.18.1'
+	config = resources.text.fromFile('config/checkstyle.xml') // Google Style Check
+}
+
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+jacocoTestReport {
+    reports {
+        html.required = true
+        xml.required = true
+        csv.required = true
+    }
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	testImplementation 'com.h2database:h2'
+
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework:spring-websocket:6.1.13'
+	implementation 'org.springframework:spring-messaging:6.1.13'
+
+	//Adding dependencies for Mockito Testing (Contact Page)
+	testImplementation 'org.mockito:mockito-core:5.5.0' // The core Mockito library
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0' // Integration with JUnit Jupiter (JUnit 5)
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+tasks.withType(Checkstyle).configureEach {
+	source 'src/main/java'
+	include '**/*.java'
+	exclude '**/generated/**'
+
+	reports {
+		xml.required.set(false)
+		html.required.set(true)
+	}
+}

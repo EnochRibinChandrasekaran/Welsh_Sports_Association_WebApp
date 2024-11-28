@@ -1,0 +1,223 @@
+/* Apply the font to the entire app */
+.app {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    height: 100vh;
+    position: relative;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
+
+.top-left-icon {
+    width: 50px;
+    height: auto;
+}
+
+.larger-icon {
+    width: 100px;
+    height: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 100px;
+    box-sizing: border-box;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.header-icon {
+    width: 75px;
+    height: 75px;
+}
+
+.rewards-list, .rewards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-y: auto;
+}
+
+/* Unified reward-item styling */
+.reward-item, .reward {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: flex-start;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reward-icon {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.reward-description h2, .reward-text {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+
+.reward-description p {
+    font-size: 14px;
+    margin: 5px 0 0;
+    color: #777;
+}
+
+.points {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-family: sans-serif;
+    font-size: 25px;
+}
+
+.view-rewards-btn {
+    padding: 12px 25px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    transition: background-color 0.3s ease;
+    font-size: 25px;
+}
+
+.view-rewards-btn:hover {
+    background-color: #218838;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    padding: 25px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.bottom-nav img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.bottom-nav a.active img {
+    filter: brightness(0) saturate(100%) invert(29%) sepia(98%) saturate(748%) hue-rotate(1deg) brightness(94%) contrast(101%);
+}
+
+.bottom-nav a:hover img {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(500%) hue-rotate(200deg) brightness(95%) contrast(90%);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .reward-description h2, .reward-text {
+        font-size: 16px;
+    }
+
+    .header-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .reward-icon {
+        width: 75px;
+        height: 75px;
+    }
+
+    .top-left-icon, .larger-icon {
+        width: 50px;
+    }
+
+    .home-link {
+        top: 10px;
+        left: 10px;
+    }
+
+    .header {
+        padding: 0 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .reward-description h2, .reward-text {
+        font-size: 14px;
+    }
+
+    .header-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .reward-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .top-left-icon, .larger-icon {
+        width: 30px;
+    }
+
+    .home-link {
+        top: 5px;
+        left: 5px;
+    }
+
+    .header {
+        padding: 0 25px;
+    }
+}

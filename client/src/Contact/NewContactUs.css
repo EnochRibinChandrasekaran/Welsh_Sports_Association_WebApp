@@ -1,0 +1,81 @@
+.form-container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact-form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  border: 1px solid #d9534f;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.VolunteerFooter {
+  flex-shrink: 0;
+}
+
+/* WSA Icon in the top left corner */
+.wsa-icon {
+  width: 100px; /* Adjust width to be more prominent */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Space between the icon and the heading */
+  object-fit: contain; /* Ensure the image is not cropped */
+}
+
+/* Heading styling */
+.contact-form-container h2 {
+  font-size: 28px;
+  /* color: #ff0700; */
+  margin-bottom: 20px;
+}
+
+/* General form styling */
+.contact-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="password"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #d9534f;
+  border-radius: 5px;
+}
+
+/* Button hover effect */
+.contact-form button:hover {
+  background-color: #dc1b00;
+}
+
+/* Response message styling */
+.response-message {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #28a745;
+}

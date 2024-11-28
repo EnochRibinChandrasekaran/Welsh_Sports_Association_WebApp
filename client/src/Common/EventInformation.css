@@ -1,0 +1,19 @@
+.event-details {
+  margin-top: 2rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.border-separate {
+  border-collapse: separate;
+}
+
+.border-spacing-y-4 {
+  border-spacing: 0 1rem; 
+}

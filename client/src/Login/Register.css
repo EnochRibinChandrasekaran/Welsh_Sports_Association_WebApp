@@ -1,0 +1,53 @@
+.register-form-container {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.register-form {
+    width: 300px;
+    padding: 20px;
+    border: none;
+    text-align: center;
+}
+
+.register-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+}
+
+.register-form button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none; /* Added this line to remove the border */
+    padding: 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Add hover effects */
+.register-form button:hover {
+    background-color: #c59e9e;
+    border-radius: 25px;
+}

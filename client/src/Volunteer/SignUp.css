@@ -1,0 +1,61 @@
+/* SignUp.css */
+
+.form-container {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.signup-form input[type="checkbox"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.signup-form input[type="checkbox"] {
+  width: auto;
+}
+
+.signup-form .submit-button {
+  background-color: #ff0000; /* Bright red button */
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.signup-form .submit-button:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}
+
+.signup-form .error-message {
+  color: #ff0000; /* Bright red text for error messages */
+  font-size: 14px;
+  margin-top: 10px;
+}

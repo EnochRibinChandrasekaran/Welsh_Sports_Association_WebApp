@@ -1,0 +1,90 @@
+.trophy-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.trophy {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: flex-start;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.trophy-icon {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.trophy-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.trophy-title {
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+.trophy-description {
+  font-size: 18px;
+  margin-top: 5px;
+  color: black;
+  text-align: left;
+}
+
+.trophy-points {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.right-aligned-text {
+  margin-left: auto; /* Push the text to the right */
+}
+
+@media (max-width: 768px) {
+  .trophy-title {
+    font-size: 16px;
+  }
+
+  .trophy-description {
+    font-size: 14px;
+  }
+
+  .trophy-icon {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trophy-title {
+    font-size: 14px;
+  }
+
+  .trophy-description {
+    font-size: 12px;
+  }
+
+  .trophy-icon {
+    width: 50px;
+    height: 50px;
+  }
+}

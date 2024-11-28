@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In with Auth0</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    body, html {
+      height: 100%;
+      background-color: #f9f9f9;
+    }
+
+    .login-container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 15px;
+      background-color: #fff;
+      box-shadow: 0px 5px 5px #ccc;
+      border-radius: 5px;
+      border-top: 1px solid #e9e9e9;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-header img {
+      width: 75px;
+    }
+
+    #error-message {
+      display: none;
+      white-space: pre-wrap;
+    }
+    
+    .signup-fields, .organizer-fields {
+      display: none;
+    }
+
+    .btn-block {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-header">
+        <img src="https://wsa.wales/wp-content/uploads/wsa-red.png" alt="WSA Logo"/>
+        <h3>Welcome</h3>
+        <h5>PLEASE LOG IN</h5>
+      </div>
+      <div id="error-message" class="alert alert-danger"></div>
+      <form onsubmit="return false;" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter your password">
+        </div>
+
+        <!-- Additional signup fields start here -->
+        <div class="signup-fields">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter your First Name">
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Enter your Last Name">
+          </div>
+
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" class="form-control" id="dob">
+          </div>
+
+          <div class="form-group">
+            <label for="dbsCheck">DBS Check</label>
+            <input type="text" class="form-control" id="dbsCheck" placeholder="Enter your DBS Check">
+          </div>
+
+          <div class="form-group">
+            <label for="consent">Consent to Background Checks</label>
+            <input type="checkbox" id="consent">
+          </div>
+
+          <div class="form-group">
+            <label for="agreeToPolicies">Agreement to Volunteer Policies</label>
+            <input type="checkbox" id="agreeToPolicies">
+          </div>
+
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="number" class="form-control" id="phoneNumber" placeholder="Enter your Phone Number">
+          </div>
+        </div>
+
+        <!-- Organizer-specific fields start here -->
+        <div class="organizer-fields">
+          <div class="form-group">
+            <label for="postCode">Postal Code</label>
+            <input type="text" class="form-control" id="postCode" placeholder="Enter the Postal Code">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Enter the Address">
+          </div>
+
+          <div class="form-group">
+            <label for="telephone">Telephone</label>
+            <input type="text" class="form-control" id="telephone" placeholder="Enter the Telephone Number">
+          </div>
+
+          <div class="form-group">
+            <label for="website">Website Link</label>
+            <input type="url" class="form-control" id="website" placeholder="Enter the Website Link">
+          </div>
+
+          <div class="form-group">
+            <label for="foundingDate">Founding Date</label>
+            <input type="date" class="form-control" id="foundingDate">
+          </div>
+
+          <div class="form-group">
+            <label for="associatedClubs">Associated Clubs</label>
+            <textarea class="form-control" id="associatedClubs" placeholder="Enter the Associated Clubs" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="numberOfMembers">Number of Members in Organisation</label>
+            <input type="number" class="form-control" id="numberOfMembers" placeholder="Enter the Number of Members">
+          </div>
+        </div>
+
+        <div class="captcha-container form-group"></div>
+        <button type="submit" id="btn-login" class="btn btn-primary btn-block">Log In</button>
+        <button type="button" id="btn-register" class="btn btn-default btn-block">Register with WSA?</button>
+        <button type="button" id="btn-signup" class="btn btn-default btn-block signup-fields">Sign Up</button>
+        <hr>
+
+        <button type="button" id="btn-google" class="btn btn-danger btn-block">Log In with Google</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.auth0.com/js/auth0/9.26/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const isOrganizer = urlParams.get('isOrganizer') === 'true';
+    const volunteerElements = document.getElementsByClassName('signup-fields');
+    const organizerElements = document.getElementsByClassName('organizer-fields');
+
+  
+      for (let i = 0; i < volunteerElements.length; i++) {
+        volunteerElements[i].style.display = 'none';
+      }
+      
+      for (let j = 0; j < organizerElements.length; j++) {
+        organizerElements[j].style.display = 'none';
+      }
+
+    window.addEventListener('load', function() {
+      var config = JSON.parse(
+        decodeURIComponent(escape(window.atob('@@config@@')))
+      );
+
+      var params =  {
+        domain: config.auth0Domain,
+        clientID: config.clientID,
+        redirectUri: config.callbackURL,
+        responseType: 'code',
+        scope: config.internalOptions.scope,
+        _csrf: config.internalOptions._csrf,
+        state: config.internalOptions.state,
+        _intstate: config.internalOptions._intstate
+      };
+
+      var triggerCaptcha = null;
+      var webAuth = new auth0.WebAuth(params);
+      var databaseConnection = 'Username-Password-Authentication';
+      var captcha = webAuth.renderCaptcha(
+        document.querySelector('.captcha-container'),
+        null,
+        (error, payload) => {
+          if (payload) {
+            triggerCaptcha = payload.triggerCaptcha;
+          }
+        }
+      );
+
+      function login(e) {
+        e.preventDefault();
+        var button = this;
+        var username = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        button.disabled = true;
+        var request = () => {
+          webAuth.login({
+            realm: databaseConnection,
+            username: username,
+            password: password,
+            captcha: captcha.getValue()
+          }, function(err) {
+            if (err) displayError(err);
+            button.disabled = false;
+          });
+        };
+        if (triggerCaptcha) {
+          triggerCaptcha(request);
+        } else {
+          request();
+        }
+      }
+
+      function register(){
+        var button = this;
+        button.disabled = true;
+        document.getElementById('btn-register').style.display = 'none';
+        document.getElementById('btn-login').style.display = 'none';
+        
+        if (isOrganizer) {
+          for (let j = 0; j < organizerElements.length; j++) {
+            organizerElements[j].style.display = 'block';
+          }
+        } else {
+          for (let i = 0; i < volunteerElements.length; i++) {
+          volunteerElements[i].style.display = 'block';
+        }
+      }
+        document.getElementById('btn-signup').style.display = 'block';
+    }
+
+      function signup() {
+        var button = this;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var phoneNumber = document.getElementById('phoneNumber').value;
+        var firstName = document.getElementById('firstName').value;
+        var lastName = document.getElementById('lastName').value;
+        var dob = document.getElementById('dob').value;
+        var dbsCheck = document.getElementById('dbsCheck').value;
+        var consent = String(document.getElementById('consent').checked);
+        var agreeToPolicies = String(document.getElementById('agreeToPolicies').checked);
+        var signupStatus = String(true);
+
+        var postCode = document.getElementById('postCode').value;
+        var address = document.getElementById('address').value;
+        var telephone = document.getElementById('telephone').value;
+        var website = document.getElementById('website').value;
+        var foundingDate = document.getElementById('foundingDate').value;
+        var associatedClubs = document.getElementById('associatedClubs').value;
+        var numberOfMembers = document.getElementById('numberOfMembers').value;
+
+        let user_metadata = {}
+        if (!isOrganizer) {
+          user_metadata = {
+            phone_number: phoneNumber,
+            first_name: firstName,
+            last_name: lastName,
+            dob: dob,
+            signup_status: signupStatus || 'false',
+          }
+        } else {
+          user_metadata = {
+              signup_status: signupStatus || 'false',
+              post_code: postCode,
+              address: address,
+              telephone: telephone,
+              website: website,
+              founding_date: foundingDate,
+              associated_clubs: associatedClubs,
+              number_of_members: numberOfMembers
+          }
+        }
+
+        button.disabled = true;
+        var request = () => {
+          webAuth.redirect.signupAndLogin({
+            connection: databaseConnection,
+            email: email,
+            password: password,
+            captcha: captcha.getValue(),
+            user_metadata: user_metadata
+          }, function(err) {
+            if (err) displayError(err);
+            button.disabled = false;
+          });
+        };
+        if (triggerCaptcha) {
+          triggerCaptcha(request);
+        } else {
+          request();
+        }
+      }
+
+      function loginWithGoogle() {
+        webAuth.authorize({
+          connection: 'google-oauth2'
+        }, function(err) {
+          if (err) displayError(err);
+        });
+      }
+
+      function displayError(err) {
+        captcha.reload();
+        var errorMessage = document.getElementById('error-message');
+        errorMessage.innerText = err.policy || err.description;
+        errorMessage.style.display = 'block';
+      }
+
+      document.getElementById('btn-login').addEventListener('click', login);
+      document.getElementById('btn-google').addEventListener('click', loginWithGoogle);
+      document.getElementById('btn-register').addEventListener('click', register);
+      document.getElementById('btn-signup').addEventListener('click', signup);
+    });
+  </script>
+</body>
+</html>

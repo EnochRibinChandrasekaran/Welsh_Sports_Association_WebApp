@@ -1,0 +1,60 @@
+// Reference from https://eslint.org/docs/latest/use/configure/configuration-files#adding-shared-settings
+
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "react/prefer-stateless-function": "off",
+    "react/button-has-type": "off",
+    "react/no-unused-prop-types": "off",
+    "react/jsx-pascal-case": "off",
+    "react/jsx-no-script-url": "off",
+    "react/no-unstable-nested-components": ["off", { "allowAsProps": true }],
+    "react/destructuring-assignment": [
+      "off",
+      "always",
+      { "destructureInSignature": "always" }
+    ],
+    "react/jsx-no-leaked-render": ["off", { "validStrategies": ["ternary"] }],
+    "react/jsx-max-depth": ["off", { "max": 6 }],
+    "react/function-component-definition": [
+      "off",
+      { "namedComponents": "arrow-function" }
+    ],
+    "react/jsx-key": [
+      "off",
+      {
+        "checkFragmentShorthand": true,
+        "checkKeyMustBeforeSpread": true,
+        "offOnDuplicates": true
+      }
+    ],
+    "react/jsx-no-useless-fragment": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "react/no-typos": "off",
+    "react/display-name": "off",
+    "react/self-closing-comp": "off",
+    "react/jsx-sort-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/prop-types": "off"
+  }
+}
